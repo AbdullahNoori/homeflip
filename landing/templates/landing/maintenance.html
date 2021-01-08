@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" class="wide wow-animation">
+  <head>
+    <!-- Site Title-->
+    <title>Maintenance</title>
+    <meta name="format-detection" content="telephone=no">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <!-- Stylesheets-->
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Poppins:400,700,300,400italic">
+    <link rel="stylesheet" href="css/style.css">
+		<!--[if lt IE 10]>
+    <div style="background: #212121; padding: 10px 0; box-shadow: 3px 3px 5px 0 rgba(0,0,0,.3); clear: both; text-align:center; position: relative; z-index:1;"><a href="http://windows.microsoft.com/en-US/internet-explorer/"><img src="images/ie8-panel/warning_bar_0000_us.jpg" border="0" height="42" width="820" alt="You are using an outdated browser. For a faster, safer browsing experience, upgrade for free today."></a></div>
+    <script src="js/html5shiv.min.js"></script>
+		<![endif]-->
+  </head>
+  <body>
+    <!-- Page-->
+    <div class="page text-center">
+      <!-- Page Content-->
+      <main class="page-content page-content-100 bg-gray-base context-dark">
+        <div class="page-content-inner">
+          <div class="shell">
+            <h1>Website will be online again soon</h1>
+            <h5 class="offset-top-40">Currently it undergoes a regular health checkup.</h5>
+            <hr>
+            <div class="range range-xs-center range-xs-bottom text-md-left">
+              <div class="cell-md-4 cell-sm-9"><img src="images/icon-03.png" alt="" class="reveal-inline-block">
+                <h4 class="offset-top-25 offset-lg-top-40 text-primary">Maintenance</h4>
+                <p class="offset-top-25">From time to time we put our website on maintenance to check if everything works OK!</p>
+              </div>
+              <div class="cell-md-4 cell-sm-9 offset-top-50 offset-md-top-0"><img src="images/icon-02.png" alt="" class="reveal-inline-block">
+                <h4 class="offset-top-25 offset-lg-top-40 text-primary">Feature updates</h4>
+                <p class="offset-top-25">We just love to roll out new features to our website. That’s what we’re doing right now!</p>
+              </div>
+              <div class="cell-md-4 cell-sm-9 offset-top-50 offset-md-top-0"><img src="images/icon-01.png" alt="" class="reveal-inline-block">
+                <h4 class="offset-top-25 offset-lg-top-40 text-primary">Bug fixes</h4>
+                <p class="offset-top-25">Any website might stumble upon some bugs. Those need to be fixed!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+      <!-- Modal-->
+      <div id="loginModal" role="dialog" class="modal fade">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content"> 
+            <div class="modal-body">
+              <button type="button" data-dismiss="modal" class="close mdi mdi-window-close"></button>
+              <!-- Nav tabs-->
+              <ul role="tablist" class="nav nav-tabs nav-tabs-custom">
+                <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+                <li role="presentation"><a href="#register" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
+              </ul>
+              <!-- Tab panes-->
+              <div class="tab-content offset-top-20">
+                <div id="login" role="tabpanel" class="fade in tab-pane active">
+                  <form method="post" class="offset-top-40 rd-mailform text-left">
+                    <div class="form-group">
+                      <label for="login-name" class="form-label">User name</label>
+                      <input id="login-name" type="text" name="name" data-constraints="@Required" class="form-control">
+                    </div>
+                    <div class="form-group offset-top-7">
+                      <label for="login-password" class="form-label">Password</label>
+                      <input id="login-password" type="password" name="password" data-constraints="@Required" class="form-control">
+                    </div>
+                    <div class="offset-top-20 text-center text-sm-left">
+                      <button type="submit" class="btn btn-block btn-primary">login</button>
+                    </div>
+                  </form>
+                </div>
+                <div id="register" role="tabpanel" class="fade in tab-pane">
+                  <form method="post" class="offset-top-40 rd-mailform text-left">
+                    <div class="form-group">
+                      <label for="register-name" class="form-label">User name</label>
+                      <input id="register-name" type="text" name="name" data-constraints="@Required" class="form-control">
+                    </div>
+                    <div class="form-group offset-top-7">
+                      <label for="register-email" class="form-label">Email</label>
+                      <input id="register-email" type="email" name="email" data-constraints="@Email @Required" class="form-control">
+                    </div>
+                    <div class="offset-top-20 text-center text-sm-left">
+                      <button type="submit" class="btn btn-block btn-primary">register</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="registerModal" role="dialog" class="modal fade">
+        <div class="modal-dialog">
+          <!-- Modal content-->
+          <div class="modal-content">
+            <div class="modal-body">
+              <button type="button" data-dismiss="modal" class="close mdi mdi-window-close"></button>
+              <!-- Nav tabs-->
+              <ul role="tablist" class="nav nav-tabs nav-tabs-custom">
+                <li role="presentation"><a href="#login-2" aria-controls="login" role="tab" data-toggle="tab">Login</a></li>
+                <li role="presentation" class="active"><a href="#register-2" aria-controls="register" role="tab" data-toggle="tab">Register</a></li>
+              </ul>
+              <!-- Tab panes-->
+              <div class="tab-content offset-top-20">
+                <div id="login-2" role="tabpanel" class="fade in tab-pane">
+                  <form method="post" class="offset-top-40 rd-mailform text-left">
+                    <div class="form-group">
+                      <label for="login-name-2" class="form-label">User name</label>
+                      <input id="login-name-2" type="text" name="name" data-constraints="@Required" class="form-control">
+                    </div>
+                    <div class="form-group offset-top-7">
+                      <label for="login-password-2" class="form-label">Password</label>
+                      <input id="login-password-2" type="password" name="password" data-constraints="@Required" class="form-control">
+                    </div>
+                    <div class="offset-top-20 text-center text-sm-left">
+                      <button type="submit" class="btn btn-block btn-primary">login</button>
+                    </div>
+                  </form>
+                </div>
+                <div id="register-2" role="tabpanel" class="fade in tab-pane active">
+                  <form method="post" class="offset-top-40 rd-mailform text-left">
+                    <div class="form-group">
+                      <label for="register-name-2" class="form-label">User name</label>
+                      <input id="register-name-2" type="text" name="name" data-constraints="@Required" class="form-control">
+                    </div>
+                    <div class="form-group offset-top-7">
+                      <label for="register-email-2" class="form-label">Email</label>
+                      <input id="register-email-2" type="email" name="email" data-constraints="@Email @Required" class="form-control">
+                    </div>
+                    <div class="offset-top-20 text-center text-sm-left">
+                      <button type="submit" class="btn btn-block btn-primary">register</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Global Mailform Output-->
+    <div id="form-output-global" class="snackbars"></div>
+    <!-- PhotoSwipe Gallery-->
+    <div tabindex="-1" role="dialog" aria-hidden="true" class="pswp">
+      <div class="pswp__bg"></div>
+      <div class="pswp__scroll-wrap">
+        <div class="pswp__container">
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+          <div class="pswp__item"></div>
+        </div>
+        <div class="pswp__ui pswp__ui--hidden">
+          <div class="pswp__top-bar">
+            <div class="pswp__counter"></div>
+            <button title="Close (Esc)" class="pswp__button pswp__button--close"></button>
+            <button title="Share" class="pswp__button pswp__button--share"></button>
+            <button title="Toggle fullscreen" class="pswp__button pswp__button--fs"></button>
+            <button title="Zoom in/out" class="pswp__button pswp__button--zoom"></button>
+            <div class="pswp__preloader">
+              <div class="pswp__preloader__icn">
+                <div class="pswp__preloader__cut">
+                  <div class="pswp__preloader__donut"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+            <div class="pswp__share-tooltip"></div>
+          </div>
+          <button title="Previous (arrow left)" class="pswp__button pswp__button--arrow--left"></button>
+          <button title="Next (arrow right)" class="pswp__button pswp__button--arrow--right"></button>
+          <div class="pswp__caption">
+            <div class="pswp__caption__cent"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Java script-->
+    <script src="js/core.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
+</html>
