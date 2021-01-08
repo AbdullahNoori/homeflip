@@ -17,12 +17,17 @@ class SearchPageView(TemplateView):
 class SearchResultsPageView(TemplateView):
     template_name = 'landing/search-results.html'
 
-class SoonPageView(TemplateView): 
-    template_name = 'landing/soon.html'
-
 class PropertyPageView(TemplateView):
     template_name = 'landing/property.html'
 
-
 class ProjectsPageView(TemplateView):
     template_name = 'landing/projects.html'
+    
+class ProjectSinglePageView(TemplateView):
+    template_name = 'landing/project-single.html'
+    
+class MaintenancePageView(TemplateView):
+    template_name = 'landing/404/maintenance.html'
+    
+class SoonPageView(TemplateView): 
+    template_name = 'landing/404/soon.html'
