@@ -2,7 +2,8 @@
 from django.shortcuts import render
 import json
 from django.views.generic.base import TemplateView
-# Create your views here.
+
+from .api import *
 
 class HomePageView(TemplateView):
     template_name = 'landing/index.html'
@@ -13,6 +14,17 @@ class PricingPageView(TemplateView):
 class SearchPageView(TemplateView):
     template_name = 'landing/search.html'
 
+    def get_context_data(self, **kwargs):
+        context = {}
+        # data = listForSale("San Francisco", "94121")
+        # print(data)
+        
+        return context
+        
+        
+
+    
+    
 
 class SearchResultsPageView(TemplateView):
     template_name = 'landing/search-results.html'
