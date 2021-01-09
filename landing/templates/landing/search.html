@@ -60,115 +60,45 @@
                 <div class="reveal-inline-block inset-left-5"><a href="search.html" class="icon icon-lg text-primary mdi mdi-view-list"></a></div>
               </div>
             </div>
+
+            {% for property in properties %}
             <div class="offset-top-50">
-                    <!-- Product-->
-                    <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
-                      <div class="unit-left">
-                        <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-01.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                          <div class="caption"><a href="search.html" class="label-lg label label-primary">Rent</a></div>
-                        </div>
-                      </div>
-                      <div class="unit-body">
-                        <h5><a href="property.html" class="text-base">A beach house at Baja California peninsula</a></h5>
-                        <div class="h5 text-primary">$1,342.00</div>
-                        <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                        <div class="offset-top-20"><span class="inset-right-20"><img src="{% static 'images/icon-05.png' %}" alt=""><span class="small"> 232.00 m²</span></span><span class="inset-right-20"><img src="{% static 'images/icon-04.png' %}" alt=""><span class="small">  3</span></span><span><img src="{% static 'images/icon-06.png' %}" alt=""><span class="small">  4</span></span></div>
-                        <hr>
-                        <p class="reveal-inline-flex range-middle"><span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span><span class="text-middle small">218 Front Street, Brooklyn, NY 11201, USA</span></p>
-                        <div class="offset-top-20"><a href="property.html" class="btn btn-primary">read more</a></div>
-                      </div>
+                <!-- Product-->
+                <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
+                  <div class="unit-left">
+                    <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{{property.thumbnail}}" width="418" height="316" alt="" class="img-responsive center-block"></a>
+                      <div class="caption"><a href="search.html" class="label-lg label label-primary">Sale</a></div>
                     </div>
+                  </div>
+                  <div class="unit-body">
+                    <h5><a href="property.html" class="text-base">{{property.address.line}} {{property.address.city}} {{property.address.state}} </a></h5>
+                    <div class="h5 text-primary">${{property.price}}</div>
+                    <p class="offset-top-20">{{property.address.county}} county</p>
+                    <div class="offset-top-20">
+                      <span class="inset-right-20">
+                        <img src="{% static 'images/icon-05.png' %}" alt="">
+                        <span class="small"> {{property.building_size.size}} {{property.building_size.units}}</span>
+                      </span>
+                      <span class="inset-right-20">
+                        <img src="{% static 'images/icon-04.png' %}" alt="">
+                        <span class="small"> {{property.beds}} </span>
+                      </span>
+                      <span>
+                        <img src="{% static 'images/icon-06.png' %}" alt="">
+                        <span class="small">  {{property.baths}}</span>
+                      </span>
+                    </div>
+                    <hr>
+                    <p class="reveal-inline-flex range-middle">
+                      <span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span>
+                      <span class="text-middle small">{{property.address.line}} {{property.address.city}} {{property.address.state_code}} {{property.address.postal_code}}</span>
+                    </p>
+                    <div class="offset-top-20"><a href="{% url 'property' property.property_id %}" class="btn btn-primary">read more</a></div>
+                  </div>
+                </div>
             </div>
-            <!-- <div class="offset-top-50">
-                    <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
-                      <div class="unit-left">
-                        <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-02.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                          <div class="caption"><a href="search.html" class="label-lg label label-primary">Rent</a></div>
-                        </div>
-                      </div>
-                      <div class="unit-body">
-                        <h5><a href="property.html" class="text-base">Hunting mansion in Kentucky</a></h5>
-                        <div class="h5 text-primary">$1,200.00</div>
-                        <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                        <div class="offset-top-20"><span class="inset-right-20"><img src="{% static 'images/icon-05.png' %}" alt=""><span class="small"> 232.00 m²</span></span><span class="inset-right-20"><img src="{% static 'images/icon-04.png' %}" alt=""><span class="small">  3</span></span><span><img src="{% static 'images/icon-06.png' %}" alt=""><span class="small">  4</span></span></div>
-                        <hr>
-                        <p class="reveal-inline-flex range-middle"><span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span><span class="text-middle small">2001-2099 Saint Charles Street, St. Louis, MO 63103, USA</span></p>
-                        <div class="offset-top-20"><a href="property.html" class="btn btn-primary">read more</a></div>
-                      </div>
-                    </div>
-            </div>
-            <div class="offset-top-50">
-                    <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
-                      <div class="unit-left">
-                        <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-03.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                          <div class="caption"><a href="search.html" class="label-lg label label-primary">Rent</a></div>
-                        </div>
-                      </div>
-                      <div class="unit-body">
-                        <h5><a href="property.html" class="text-base">Erie Lakeside house, MI</a></h5>
-                        <div class="h5 text-primary">$3,400.00</div>
-                        <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                        <div class="offset-top-20"><span class="inset-right-20"><img src="{% static 'images/icon-05.png' %}" alt=""><span class="small"> 232.00 m²</span></span><span class="inset-right-20"><img src="{% static 'images/icon-04.png' %}" alt=""><span class="small">  3</span></span><span><img src="{% static 'images/icon-06.png' %}" alt=""><span class="small">  4</span></span></div>
-                        <hr>
-                        <p class="reveal-inline-flex range-middle"><span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span><span class="text-middle small">Crockett School, San Diego, CA 92113, USA</span></p>
-                        <div class="offset-top-20"><a href="property.html" class="btn btn-primary">read more</a></div>
-                      </div>
-                    </div>
-            </div>
-            <div class="offset-top-50">
-                    <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
-                      <div class="unit-left">
-                        <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-04.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                          <div class="caption"><a href="search.html" class="label-lg label label-primary">Rent</a></div>
-                        </div>
-                      </div>
-                      <div class="unit-body">
-                        <h5><a href="property.html" class="text-base">A new townhouse in the Appalachian mountains</a></h5>
-                        <div class="h5 text-primary">$3,400.00</div>
-                        <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                        <div class="offset-top-20"><span class="inset-right-20"><img src="{% static 'images/icon-05.png' %}" alt=""><span class="small"> 232.00 m²</span></span><span class="inset-right-20"><img src="{% static 'images/icon-04.png' %}" alt=""><span class="small">  3</span></span><span><img src="{% static 'images/icon-06.png' %}" alt=""><span class="small">  4</span></span></div>
-                        <hr>
-                        <p class="reveal-inline-flex range-middle"><span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span><span class="text-middle small">79 South Main Street, Wytheville, VA 24382, USA</span></p>
-                        <div class="offset-top-20"><a href="property.html" class="btn btn-primary">read more</a></div>
-                      </div>
-                    </div>
-            </div>
-            <div class="offset-top-50">
-                    <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
-                      <div class="unit-left">
-                        <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-05.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                          <div class="caption"><a href="search.html" class="label-lg label label-primary">Rent</a></div>
-                        </div>
-                      </div>
-                      <div class="unit-body">
-                        <h5><a href="property.html" class="text-base">A beach house in Orlando, Florida</a></h5>
-                        <div class="h5 text-primary">$2,030.00</div>
-                        <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                        <div class="offset-top-20"><span class="inset-right-20"><img src="{% static 'images/icon-05.png' %}" alt=""><span class="small"> 232.00 m²</span></span><span class="inset-right-20"><img src="{% static 'images/icon-04.png' %}" alt=""><span class="small">  3</span></span><span><img src="{% static 'images/icon-06.png' %}" alt=""><span class="small">  4</span></span></div>
-                        <hr>
-                        <p class="reveal-inline-flex range-middle"><span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span><span class="text-middle small">Crockett School, San Diego, CA 92113, USA</span></p>
-                        <div class="offset-top-20"><a href="property.html" class="btn btn-primary">read more</a></div>
-                      </div>
-                    </div>
-            </div>
-            <div class="offset-top-50">
-                    <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
-                      <div class="unit-left">
-                        <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-06.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                          <div class="caption"><a href="search.html" class="label-lg label label-primary">Rent</a></div>
-                        </div>
-                      </div>
-                      <div class="unit-body">
-                        <h5><a href="property.html" class="text-base">New townhouse in St. Louis, Missouri</a></h5>
-                        <div class="h5 text-primary">$8,000.00</div>
-                        <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                        <div class="offset-top-20"><span class="inset-right-20"><img src="{% static 'images/icon-05.png' %}" alt=""><span class="small"> 232.00 m²</span></span><span class="inset-right-20"><img src="{% static 'images/icon-04.png' %}" alt=""><span class="small">  3</span></span><span><img src="{% static 'images/icon-06.png' %}" alt=""><span class="small">  4</span></span></div>
-                        <hr>
-                        <p class="reveal-inline-flex range-middle"><span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span><span class="text-middle small">1 financial suare, Louisville, KY 40202, USA</span></p>
-                        <div class="offset-top-20"><a href="property.html" class="btn btn-primary">read more</a></div>
-                      </div>
-                    </div>
-            </div> -->
+            {% endfor %}
+            
             <hr>
                   <!-- Bootstrap Pagination-->
                   <nav>
@@ -184,7 +114,7 @@
               <div class="cell-md-12 cell-sm-10">
                 <div class="well well-rudo">
                   <h3>Search for properties:</h3>
-                  <form class="offset-top-30 text-left" action="{% url 'search-results' %}" method="POST">
+                  <form class="offset-top-30 text-left" action="{% url 'search' %}" method="POST">
                     {% csrf_token %}
                     <div class="form-group">
                       <label class="form-label-static form-label-outside">Keyword</label>
