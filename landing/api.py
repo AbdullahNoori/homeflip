@@ -43,6 +43,22 @@ def soldProperties(city, statecode):
     
     return data
 
+def propertyDetail(property_id):
+    url = "https://realtor.p.rapidapi.com/properties/v2/detail"
+
+    querystring = {"property_id": property_id}
+
+    headers = {
+        'x-rapidapi-key': "ae42631858mshd5ba8affbe71f55p14f928jsncb2c824de7d1",
+        'x-rapidapi-host': "realtor.p.rapidapi.com"
+    }
+
+    response = requests.request("GET", url, headers=headers, params=querystring)
+
+    data = response.json()
+
+    return data   
+
 def listForSale(city, statecode):
 
     url = "https://realtor.p.rapidapi.com/properties/v2/list-for-sale"
