@@ -11,33 +11,7 @@ class HomePageView(TemplateView):
 
 class PricingPageView(TemplateView):
     template_name = 'landing/pricing.html'
-
-class SearchPageView(TemplateView):
-    template_name = 'landing/search.html'
-    form_class = SearchForm()
-
-    def get_context_data(self, **kwargs):
-        context = {}
-
-        # get search from the form
-        # pass the query to autocomplete and get the full address
-        fullAddress = autoComplete("glenolden")
-        
-        # get the results
-        
-        data = listForSale(fullAddress['city'], fullAddress['state_code'])
-        
-        
-        # print(data['properties'])
-        # pass the data['properties'] to context
-        
-        return context
-        
-    def get_form(self, form_class=None):
-        form = super(SearchPageView, self).get_form(form_class)
-        # override the queryset
-        form.fields['keywords'].queryset = self.petitioner.players 
-        return form
+    
 
 class FilterPage(ListView):
     def get(self, request):
@@ -57,20 +31,35 @@ class FilterPage(ListView):
         return render(request, 'landing/search.html', context)
 
 def search(request):
-    context = {}
-    query = request.POST.get('location')
+    if request.method == "GET":
+        return render(request, 'landing/search.html')
     
-    fullAddress = autoComplete("glenolden")
-    data = listForSale(fullAddress['city'], fullAddress['state_code'])
-    context['properties'] = data['properties']
-    return context
+    else:
+        
+        query = request.POST.get('location')
+        fullAddress = autoComplete(query)
+        data = listForSale(fullAddress['city'], fullAddress['state_code'])
+        context = {'properties':  data['properties'] }
+
+        return render(request, 'landing/search.html', context)
 
 
 class SearchResultsPageView(TemplateView):
     template_name = 'landing/search-results.html'
 
-class PropertyPageView(TemplateView):
-    template_name = 'landing/property.html'
+
+class PropertyPageView(ListView):
+    
+    def get(self, request, property_id):
+        
+        data = propertyDetail(property_id)
+        
+        context = {"property": data['properties'][0]}
+        
+        return render(request, 'landing/property.html', context)
+
+    
+    
 
 class ProjectsPageView(TemplateView):
     template_name = 'landing/projects.html'
