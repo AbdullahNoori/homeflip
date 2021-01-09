@@ -16,8 +16,17 @@ class SearchPageView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = {}
-        # data = listForSale("San Francisco", "94121")
-        # print(data)
+        # get serarch from the from
+        # passs the query to autocomplete and get the full address
+        fullAddress = autoComplete("glenolden")
+        
+        # get the results
+        
+        data = listForSale(fullAddress['city'], fullAddress['state_code'])
+        
+        
+        # print(data['properties'])
+        # pass the data['properties'] to context
         
         return context
         
