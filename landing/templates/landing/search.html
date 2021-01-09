@@ -79,8 +79,7 @@
                       </div>
                     </div>
             </div>
-            <div class="offset-top-50">
-                    <!-- Product-->
+            <!-- <div class="offset-top-50">
                     <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
                       <div class="unit-left">
                         <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-02.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
@@ -99,7 +98,6 @@
                     </div>
             </div>
             <div class="offset-top-50">
-                    <!-- Product-->
                     <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
                       <div class="unit-left">
                         <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-03.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
@@ -118,7 +116,6 @@
                     </div>
             </div>
             <div class="offset-top-50">
-                    <!-- Product-->
                     <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
                       <div class="unit-left">
                         <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-04.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
@@ -137,7 +134,6 @@
                     </div>
             </div>
             <div class="offset-top-50">
-                    <!-- Product-->
                     <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
                       <div class="unit-left">
                         <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-05.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
@@ -156,7 +152,6 @@
                     </div>
             </div>
             <div class="offset-top-50">
-                    <!-- Product-->
                     <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
                       <div class="unit-left">
                         <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{% static 'images/product-06.jpg' %}" width="418" height="316" alt="" class="img-responsive center-block"></a>
@@ -173,7 +168,7 @@
                         <div class="offset-top-20"><a href="property.html" class="btn btn-primary">read more</a></div>
                       </div>
                     </div>
-            </div>
+            </div> -->
             <hr>
                   <!-- Bootstrap Pagination-->
                   <nav>
@@ -189,7 +184,8 @@
               <div class="cell-md-12 cell-sm-10">
                 <div class="well well-rudo">
                   <h3>Search for properties:</h3>
-                  <form class="offset-top-30 text-left">
+                  <form class="offset-top-30 text-left" action="{% url 'search-results' %}" method="POST">
+                    {% csrf_token %}
                     <div class="form-group">
                       <label class="form-label-static form-label-outside">Keyword</label>
                       <input type="text" name="keyword" placeholder="Any" data-constraints="@Required" class="form-control">
@@ -275,7 +271,7 @@
                       <button data-custom-toggle="#goal" class="btn btn-block btn-primary">more</button>
                     </div>
                     <div class="offset-top-10">
-                      <button class="btn btn-block btn-primary">search</button>
+                      <button class="btn btn-block btn-primary" type='submit'>search</button>
                     </div>
                   </form>
                 </div>
@@ -297,7 +293,7 @@
                     </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
                   </div>
                 </div>
-                <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-50 offset-lg-top-30">
+                <!-- <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-50 offset-lg-top-30">
                   <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-30.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
                   <div class="unit-body">
                     <h6><a href="property.html" class="text-base">Hunting mansion in Kentucky</a></h6>
@@ -324,7 +320,7 @@
                       </div>
                     </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
                   </div>
-                </div>
+                </div> -->
               </div>
             </div>
           </div>

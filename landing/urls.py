@@ -12,6 +12,6 @@ urlpatterns = [
   path('projects/', ProjectsPageView.as_view(), name='projects'),
   path('project-single/', ProjectSinglePageView.as_view(), name='project-single'),
   path('maintenance/', MaintenancePageView.as_view(), name='maintenance'),
-
+  path('a/', FilterPage.as_view(), name='plsword'),
 ]
   
