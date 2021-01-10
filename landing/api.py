@@ -59,21 +59,31 @@ def propertyDetail(property_id):
 
     return data   
 
-def listForSale(city, statecode):
+def listForSale(data):
 
     url = "https://realtor.p.rapidapi.com/properties/v2/list-for-sale"
 
+    # if int(data['price_max']) < 10:
+    #     data['price_min'] = 10000000000
+    # if int(data['baths_min']) == 0:
+    #     data['price_min'] = 10
+    # if int(data['baths_min']) == 0:
+    #     data['baths_min'] = 10
+    print(data)
+        
     querystring = {
-            # "beds_min":"3",
-            # "sort":"price_low",
-            # "postal_code":"",
-            # "prop_type":"single_family%2Cmulti_family",
-            # "baths_min":"2",
-            # "radius":"5",
-            "city": city,
-            "limit":"200",
+            "beds_min":data['beds_min'],
+            "sort":data['sort'],
+            "baths_min":data['baths_min'],
+            "radius":data['radius'],
+            "price_min": data['price_min'],
+            "price_max": data['price_max'],
+            "prop_type": data['prop_type'],
+            # "is_pending": data['pending'],
+            "city": data['fullAddress']['city'],
+            "limit":data['limit'],
             "offset":"0",
-            "state_code":statecode
+            "state_code":data['fullAddress']['state_code']
             }
 
     headers = {

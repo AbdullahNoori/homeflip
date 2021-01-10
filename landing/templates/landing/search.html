@@ -40,12 +40,11 @@
           <div class="cell-md-8">
             <div class="range range-xs-middle">
               <div class="cell-sm-8">
-                <div class="range range-xs-middle">
+                <!-- <div class="range range-xs-middle">
                   <div class="cell-sm-2 text-sm-nowrap">
                     <p class="text-base text-bold">Sort by:</p>
                   </div>
                   <div class="cell-sm-7 offset-top-10 offset-sm-top-0">
-                    <!--Select 2-->
                     <select data-placeholder="Select an option" data-minimum-results-for-search="Infinity" data-constraints="@Required" class="form-control select-filter">
                       <option value="2">Default</option>
                       <option value="3">Price (Low to High)</option>
@@ -54,24 +53,25 @@
                       <option value="6">Date New to Old</option>
                     </select>
                   </div>
-                </div>
+                </div> -->
               </div>
               <div class="cell-sm-4 offset-top-20 offset-sm-top-0 text-sm-right"><a href="search-grid.html" class="icon icon-lg text-gray mdi mdi-view-module"></a>
                 <div class="reveal-inline-block inset-left-5"><a href="search.html" class="icon icon-lg text-primary mdi mdi-view-list"></a></div>
               </div>
             </div>
 
+          {% if properties %}
             {% for property in properties %}
             <div class="offset-top-50">
                 <!-- Product-->
                 <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
                   <div class="unit-left">
-                    <div class="thumbnail-variant-1"><a href="property.html" class="reveal-inline-block"><img src="{{property.thumbnail}}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                      <div class="caption"><a href="search.html" class="label-lg label label-primary">Sale</a></div>
+                    <div class="thumbnail-variant-1"><a href="{% url 'property' property.property_id %}" class="reveal-inline-block"><img src="{{property.thumbnail}}" width="418" height="316" alt="" class="img-responsive center-block"></a>
+                      <div class="caption"><a href="{% url 'property' property.property_id %}" class="label-lg label label-primary">{{property.prop_status}}</a></div>
                     </div>
                   </div>
                   <div class="unit-body">
-                    <h5><a href="property.html" class="text-base">{{property.address.line}} {{property.address.city}} {{property.address.state}} </a></h5>
+                    <h5><a href="{% url 'property' property.property_id %}" class="text-base">{{property.address.line}} {{property.address.city}} {{property.address.state}} </a></h5>
                     <div class="h5 text-primary">${{property.price}}</div>
                     <p class="offset-top-20">{{property.address.county}} county</p>
                     <div class="offset-top-20">
@@ -98,9 +98,16 @@
                 </div>
             </div>
             {% endfor %}
+          {% else %}
+          
+              <p class="mt-5">No search results</p>
+          
+          {% endif %}
             
             <hr>
                   <!-- Bootstrap Pagination-->
+                  {% if properties %}
+
                   <nav>
                     <ul class="pagination pagination">
                       <li class="active"><span>1</span></li>
@@ -108,6 +115,7 @@
                       <li><a href="#" aria-label="Next" class="btn"><span aria-hidden="true">Next</span></a></li>
                     </ul>
                   </nav>
+                  {% endif %}
           </div>
           <div class="cell-md-4">
             <div class="range range-xs-center">

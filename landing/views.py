@@ -51,19 +51,37 @@ class ContactPageView(ListView):
 
 def search(request, *args, **kwargs):
     
+    
     if request.method == "GET":
-        query = request.GET.get('city')
-        fullAddress = autoComplete(query)
-        data = listForSale(fullAddress['city'], fullAddress['state_code'])
-        context = {'properties':  data['properties'] }
+        query = request.GET.get('city', None)
+        context = {}
+        if not query is None:
+            fullAddress = autoComplete(query)
+            search_query = {
+                'fullAddress': fullAddress,
+            }
+            
+            data = listForSale(search_query)
+            context = {'properties':  data['properties'] }
+        
         
         return render(request, 'landing/search.html', context)
     
     else:
+        fullAddress = autoComplete(request.POST.get('location'))
+        search_query = {
+            'fullAddress': fullAddress,
+            'sort' : request.POST.get('sort'),
+            'prop_type' : request.POST.get('prop_type'),
+            'price_min' : request.POST.get('min_price'),
+            'price_max' : request.POST.get('max_price'),
+            'beds_min' : request.POST.get('beds_min'),
+            'baths_min' : request.POST.get('baths_min'),
+            'radius' : request.POST.get('radius'),
+            'limit' : request.POST.get('limit'),
+        }
         
-        query = request.POST.get('location')
-        fullAddress = autoComplete(query)
-        data = listForSale(fullAddress['city'], fullAddress['state_code'])
+        data = listForSale(search_query)
         context = {'properties':  data['properties'] }
 
         return render(request, 'landing/search.html', context)
