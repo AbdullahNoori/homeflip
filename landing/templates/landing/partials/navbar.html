@@ -33,10 +33,13 @@
             <ul class="rd-navbar-nav">
               <li><a href="{% url 'home' %}">Home</a></li>
               <li><a href="{% url 'search' %}">Search</a>
-                <!-- <ul class="rd-navbar-dropdown">
-                  <li><a href="idx-1.html">For Sale</a></li>
-                  <li><a href="idx-2.html">Sold</a></li>
-                </ul> -->
+                <ul class="rd-navbar-dropdown">
+                  <li><a href="/search?city=san francisco">San Francisco</a></li>
+                  <li><a href="/search?city=new york">New York</a></li>
+                  <li><a href="/search?city=boston">Boston</a></li>
+                  <li><a href="/search?city=seatle">Seatle</a></li>
+                  <li><a href="/search?city=chicago">Chicago</a></li>
+                </ul>
               </li>
               <li><a href="{% url 'projects' %}">Projects</a></li>
               <li><a href="{% url 'contact' %}">Contact</a></li>
