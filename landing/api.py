@@ -23,6 +23,7 @@ def autoComplete(query):
 
             address['city'] = autoAddress['city']
             address['state_code'] = autoAddress['state_code']
+            address['centriod'] = autoAddress['centroid']
 
 
         return address
@@ -69,22 +70,31 @@ def listForSale(data):
     #     data['price_min'] = 10
     # if int(data['baths_min']) == 0:
     #     data['baths_min'] = 10
-    print(data)
-        
-    querystring = {
-            "beds_min":data['beds_min'],
-            "sort":data['sort'],
-            "baths_min":data['baths_min'],
-            "radius":data['radius'],
-            "price_min": data['price_min'],
-            "price_max": data['price_max'],
-            "prop_type": data['prop_type'],
-            # "is_pending": data['pending'],
-            "city": data['fullAddress']['city'],
-            "limit":data['limit'],
-            "offset":"0",
-            "state_code":data['fullAddress']['state_code']
-            }
+    
+    try:
+        querystring = {
+                "beds_min":data['beds_min'],
+                "sort":data['sort'],
+                "baths_min":data['baths_min'],
+                "radius":data['radius'],
+                "price_min": data['price_min'],
+                "price_max": data['price_max'],
+                "prop_type": data['prop_type'],
+                # "is_pending": data['pending'],
+                "city": data['fullAddress']['city'],
+                "limit":data['limit'],
+                "offset":"0",
+                "state_code":data['fullAddress']['state_code']
+                }
+
+    except :
+        querystring = {
+                # "is_pending": data['pending'],
+                "city": data['fullAddress']['city'],
+                "limit":50,
+                "offset":"0",
+                "state_code":data['fullAddress']['state_code']
+                }
 
     headers = {
         'x-rapidapi-host': "realtor.p.rapidapi.com",

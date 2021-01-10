@@ -16,23 +16,20 @@
       </div>
     </section>
     <section>
+      {% if properties %}
       <!-- RD Google Map-->
-      <div data-zoom="12" data-x="-73.9874068" data-y="40.643180" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFBB00&quot;},{&quot;saturation&quot;:43.400000000000006},{&quot;lightness&quot;:37.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFC200&quot;},{&quot;saturation&quot;:-61.8},{&quot;lightness&quot;:45.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51.19999999999999},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:52},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#0078FF&quot;},{&quot;saturation&quot;:-13.200000000000003},{&quot;lightness&quot;:2.4000000000000057},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#00FF6A&quot;},{&quot;saturation&quot;:-1.0989010989011234},{&quot;lightness&quot;:11.200000000000017},{&quot;gamma&quot;:1}]}]" class="rd-google-map rd-google-map__model">
+      <div data-zoom="12" data-x="{{fullAddress.centriod.lon}}" data-y="{{fullAddress.centriod.lat}}" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFBB00&quot;},{&quot;saturation&quot;:43.400000000000006},{&quot;lightness&quot;:37.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFC200&quot;},{&quot;saturation&quot;:-61.8},{&quot;lightness&quot;:45.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51.19999999999999},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:52},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#0078FF&quot;},{&quot;saturation&quot;:-13.200000000000003},{&quot;lightness&quot;:2.4000000000000057},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#00FF6A&quot;},{&quot;saturation&quot;:-1.0989010989011234},{&quot;lightness&quot;:11.200000000000017},{&quot;gamma&quot;:1}]}]" class="rd-google-map rd-google-map__model">
         <ul class="map_locations">
-          <li data-y="40.643180" data-x="-73.9874068">
-            <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-          </li>
-          <li data-y="40.642180" data-x="-73.8884068">
-            <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-          </li>
-          <li data-y="40.603180" data-x="-73.9974068">
-            <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-          </li>
-          <li data-y="40.613180" data-x="-73.9774068">
-            <p>9870 St Vincent Place, Glasgow, DC 45 Fr 45.</p>
-          </li>
+          {% for property in properties %}
+            <li data-y="{{property.address.lon}}" data-x="{{property.address.lat}}">
+              <p>{{property.address.line}}, {{property.address.city}}, {{property.address.state}}, {{property.address.postal_code}}</p>
+            </li>
+          {% endfor %}
         </ul>
       </div>
+      {% else %}
+        <div data-zoom="12" data-x="-73.9874068" data-y="40.643180" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFBB00&quot;},{&quot;saturation&quot;:43.400000000000006},{&quot;lightness&quot;:37.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFC200&quot;},{&quot;saturation&quot;:-61.8},{&quot;lightness&quot;:45.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51.19999999999999},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:52},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#0078FF&quot;},{&quot;saturation&quot;:-13.200000000000003},{&quot;lightness&quot;:2.4000000000000057},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#00FF6A&quot;},{&quot;saturation&quot;:-1.0989010989011234},{&quot;lightness&quot;:11.200000000000017},{&quot;gamma&quot;:1}]}]" class="rd-google-map rd-google-map__model"></div>
+      {% endif %}
     </section>
     <section class="section-top-70 section-bottom-80">
       <div class="shell text-md-left">
@@ -55,8 +52,11 @@
                   </div>
                 </div> -->
               </div>
-              <div class="cell-sm-4 offset-top-20 offset-sm-top-0 text-sm-right"><a href="search-grid.html" class="icon icon-lg text-gray mdi mdi-view-module"></a>
-                <div class="reveal-inline-block inset-left-5"><a href="search.html" class="icon icon-lg text-primary mdi mdi-view-list"></a></div>
+              <div class="cell-sm-4 offset-top-20 offset-sm-top-0 text-sm-right">
+                <!-- <a href="search-grid.html" class="icon icon-lg text-gray mdi mdi-view-module"></a> -->
+                <div class="reveal-inline-block inset-left-5">
+                  <!-- <a href="search.html" class="icon icon-lg text-primary mdi mdi-view-list"></a> -->
+                </div>
               </div>
             </div>
 
@@ -127,49 +127,23 @@
               </div>
               <div class="cell-md-12 cell-sm-10 offset-top-40">
                 <hr>
-                <h3>Last Properties</h3>
-                <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-40">
-                  <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-29.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
-                  <div class="unit-body">
-                    <h6><a href="property.html" class="text-base">A beach house at Baja California peninsula</a></h6>
-                    <p class="text-primary text-sbold">$1,342.00</p>
-                    <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                    <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
-                      <div class="unit-body">
-                        <div class="small">218 Front Street, Brooklyn, NY 11201, USA</div>
-                      </div>
-                    </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
+                {% if similar_properties %}
+                  <h3>Similar Properties</h3>
+                  <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-40">
+                    <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-29.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
+                    <div class="unit-body">
+                      <h6><a href="property.html" class="text-base">A beach house at Baja California peninsula</a></h6>
+                      <p class="text-primary text-sbold">$1,342.00</p>
+                      <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
+                      <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
+                        <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
+                        <div class="unit-body">
+                          <div class="small">218 Front Street, Brooklyn, NY 11201, USA</div>
+                        </div>
+                      </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
+                    </div>
                   </div>
-                </div>
-                <!-- <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-50 offset-lg-top-30">
-                  <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-30.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
-                  <div class="unit-body">
-                    <h6><a href="property.html" class="text-base">Hunting mansion in Kentucky</a></h6>
-                    <p class="text-primary text-sbold">$1,200.00</p>
-                    <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                    <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
-                      <div class="unit-body">
-                        <div class="small">2001-2099 Saint Charles Street, St. Louis, MO 63103, USA</div>
-                      </div>
-                    </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
-                  </div>
-                </div>
-                <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-50 offset-lg-top-30">
-                  <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-31.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
-                  <div class="unit-body">
-                    <h6><a href="property.html" class="text-base">Erie Lakeside house, MI</a></h6>
-                    <p class="text-primary text-sbold">$3,400.00</p>
-                    <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                    <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
-                      <div class="unit-body">
-                        <div class="small">Northeast Ohio Sustainable Communities Consortium, 1299 Superior Avenue, Cleveland, OH 44114, USA</div>
-                      </div>
-                    </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
-                  </div>
-                </div> -->
+                {% endif %}
               </div>
             </div>
           </div>

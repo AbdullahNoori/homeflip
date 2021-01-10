@@ -62,7 +62,7 @@ def search(request, *args, **kwargs):
             }
             
             data = listForSale(search_query)
-            context = {'properties':  data['properties'] }
+            context = {'properties':  data['properties'], 'fullAddress': fullAddress,}
         
         
         return render(request, 'landing/search.html', context)
@@ -71,18 +71,18 @@ def search(request, *args, **kwargs):
         fullAddress = autoComplete(request.POST.get('location'))
         search_query = {
             'fullAddress': fullAddress,
-            'sort' : request.POST.get('sort'),
-            'prop_type' : request.POST.get('prop_type'),
-            'price_min' : request.POST.get('min_price'),
-            'price_max' : request.POST.get('max_price'),
-            'beds_min' : request.POST.get('beds_min'),
-            'baths_min' : request.POST.get('baths_min'),
-            'radius' : request.POST.get('radius'),
-            'limit' : request.POST.get('limit'),
+            'sort' : request.POST.get('sort', ""),
+            'prop_type' : request.POST.get('prop_type', ""),
+            'price_min' : request.POST.get('min_price', ""),
+            'price_max' : request.POST.get('max_price', ""),
+            'beds_min' : request.POST.get('beds_min', ""),
+            'baths_min' : request.POST.get('baths_min', ""),
+            'radius' : request.POST.get('radius', ""),
+            'limit' : request.POST.get('limit', ""),
         }
         
         data = listForSale(search_query)
-        context = {'properties':  data['properties'] }
+        context = {'properties':  data['properties'], 'fullAddress': fullAddress, }
 
         return render(request, 'landing/search.html', context)
 
