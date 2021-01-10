@@ -29,10 +29,35 @@ class FilterPage(ListView):
         context = {'address': fullAddress}
         
         return render(request, 'landing/search.html', context)
+    
+class ContactPageView(ListView):
+    def get(self, request):
+        return render(request, 'landing/contacts.html')
 
-def search(request):
+    def post(self, request):
+            
+        
+        city = request.POST.get('city', city)
+        address = request.POST.get('address')
+        fullAddress = autoComplete(str(address)+" "+str(city))
+
+        data = listForSale(fullAddress['city'], fullAddress['state_code'])
+
+        # runAI(data['properties'])
+
+        context = {'address': fullAddress}
+        
+        return render(request, 'landing/search.html', context)
+
+def search(request, *args, **kwargs):
+    
     if request.method == "GET":
-        return render(request, 'landing/search.html')
+        query = request.GET.get('city')
+        fullAddress = autoComplete(query)
+        data = listForSale(fullAddress['city'], fullAddress['state_code'])
+        context = {'properties':  data['properties'] }
+        
+        return render(request, 'landing/search.html', context)
     
     else:
         
