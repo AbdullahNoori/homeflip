@@ -1,11 +1,12 @@
 # from django.shortcuts import render
 from django.shortcuts import render
-import json
+import json, os
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import *
 from .api import *
+from . import histogram
 
 class HomePageView(TemplateView):
     template_name = 'landing/index.html'
@@ -76,7 +77,9 @@ def search(request, *args, **kwargs):
             except:
                 properties = paginator.page(paginator.num_pages)
             
-            context = {'properties': properties, 'fullAddress': fullAddress, 'query': query}
+            hist = histogram.Histogram(data)
+
+            context = {'properties': properties, 'fullAddress': fullAddress, 'query': query, 'chart_data': hist.getHistogram()}
         
         return render(request, 'landing/search.html', context)
     
@@ -111,7 +114,8 @@ def search(request, *args, **kwargs):
         except:
             properties = paginator.page(paginator.num_pages)
 
-        context = {'properties': properties, 'fullAddress': fullAddress, 'query': location}
+        hist = histogram.Histogram(data)
+        context = {'properties': properties, 'fullAddress': fullAddress, 'query': location, 'data': hist.getHistogram()}
 
         return render(request, 'landing/search.html', context)
 
