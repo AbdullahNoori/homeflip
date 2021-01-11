@@ -105,17 +105,38 @@
           {% endif %}
             
             <hr>
-                  <!-- Bootstrap Pagination-->
-                  {% if properties %}
-
-                  <nav>
+              <nav>
+                <ul class="pagination pagination">
+                    {% if properties.has_other_pages %}
+                    <ul class="pagination">
+                      {% if properties.has_previous %}
+                        <li><a href="?page={{ properties.previous_page_number }}&city={{query}}&location={{query}}">&laquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&laquo;</span></li>
+                      {% endif %}
+                      {% for i in properties.paginator.page_range %}
+                        {% if properties.number == i %}
+                          <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                        {% else %}
+                          <li><a href="?page={{ i }}&city={{query}}&location={{query}}">{{ i }}</a></li>
+                        {% endif %}
+                      {% endfor %}
+                      {% if properties.has_next %}
+                        <li><a href="?page={{ properties.next_page_number }}&city={{query}}&location={{query}}">&raquo;</a></li>
+                      {% else %}
+                        <li class="disabled"><span>&raquo;</span></li>
+                      {% endif %}
+                    </ul>
+                  {% endif %}
+                  </ul>
+                </nav>
+                  <!-- <nav>
                     <ul class="pagination pagination">
                       <li class="active"><span>1</span></li>
                       <li><a href="#">2</a></li>
                       <li><a href="#" aria-label="Next" class="btn"><span aria-hidden="true">Next</span></a></li>
                     </ul>
-                  </nav>
-                  {% endif %}
+                  </nav> -->
           </div>
           <div class="cell-md-4">
             <div class="range range-xs-center">
