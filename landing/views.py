@@ -3,6 +3,7 @@ from django.shortcuts import render
 import json
 from django.views.generic.base import TemplateView
 from django.views.generic.list import ListView
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from .forms import *
 from .api import *
 
@@ -51,7 +52,6 @@ class ContactPageView(ListView):
 
 def search(request, *args, **kwargs):
     
-    
     if request.method == "GET":
         query = request.GET.get('city', None)
         context = {}
@@ -62,8 +62,21 @@ def search(request, *args, **kwargs):
             }
             
             data = listForSale(search_query)
-            context = {'properties':  data['properties'], 'fullAddress': fullAddress,}
+            
+            properties = data['properties']
+            paginator = Paginator(properties, 5)
         
+            try:
+                page = int(request.GET.get('page', '1'))
+            except:
+                page = 1
+                
+            try: 
+                properties = paginator.page(page)
+            except:
+                properties = paginator.page(paginator.num_pages)
+            
+            context = {'properties': properties, 'fullAddress': fullAddress, 'query': query}
         
         return render(request, 'landing/search.html', context)
     
@@ -82,7 +95,23 @@ def search(request, *args, **kwargs):
         }
         
         data = listForSale(search_query)
-        context = {'properties':  data['properties'], 'fullAddress': fullAddress, }
+
+        location = request.POST.get('location')
+
+        properties = data['properties']
+        paginator = Paginator(properties, 5)
+    
+        try:
+            page = int(request.GET.get('page', '1'))
+        except:
+            page = 1
+            
+        try: 
+            properties = paginator.page(page)
+        except:
+            properties = paginator.page(paginator.num_pages)
+
+        context = {'properties': properties, 'fullAddress': fullAddress, 'query': location}
 
         return render(request, 'landing/search.html', context)
 
