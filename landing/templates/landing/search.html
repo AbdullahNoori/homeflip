@@ -15,7 +15,7 @@
         </ol>
       </div>
     </section>
-    <section>
+    <section class="bg-gray-lighter">
       {% if properties %}
       <!-- RD Google Map-->
       <div data-zoom="12" data-x="{{fullAddress.centriod.lon}}" data-y="{{fullAddress.centriod.lat}}" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFBB00&quot;},{&quot;saturation&quot;:43.400000000000006},{&quot;lightness&quot;:37.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFC200&quot;},{&quot;saturation&quot;:-61.8},{&quot;lightness&quot;:45.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51.19999999999999},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:52},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#0078FF&quot;},{&quot;saturation&quot;:-13.200000000000003},{&quot;lightness&quot;:2.4000000000000057},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#00FF6A&quot;},{&quot;saturation&quot;:-1.0989010989011234},{&quot;lightness&quot;:11.200000000000017},{&quot;gamma&quot;:1}]}]" class="rd-google-map rd-google-map__model">
@@ -31,6 +31,22 @@
         <div data-zoom="12" data-x="-73.9874068" data-y="40.643180" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFBB00&quot;},{&quot;saturation&quot;:43.400000000000006},{&quot;lightness&quot;:37.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFC200&quot;},{&quot;saturation&quot;:-61.8},{&quot;lightness&quot;:45.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51.19999999999999},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:52},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#0078FF&quot;},{&quot;saturation&quot;:-13.200000000000003},{&quot;lightness&quot;:2.4000000000000057},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#00FF6A&quot;},{&quot;saturation&quot;:-1.0989010989011234},{&quot;lightness&quot;:11.200000000000017},{&quot;gamma&quot;:1}]}]" class="rd-google-map rd-google-map__model"></div>
       {% endif %}
     </section>
+
+    <section class="bg-gray-lighter">
+        <div class="col bg-white">
+            <canvas class="w-50 h-100" id="myChart"></canvas>
+        </div>
+        <div class="col bg-white">
+            <canvas class="w-50 h-100" id="lineChart"></canvas>
+        </div>
+        <div class="col bg-white">
+            <canvas id="bedsChart"></canvas>
+        </div>
+        <div class="col bg-white">
+            <canvas id="bathsChart"></canvas>
+        </div>
+    </section>
+
     <section class="section-top-70 section-bottom-80">
       <div class="shell text-md-left">
         <div class="range">
@@ -172,4 +188,206 @@
       </div>
     </section>
   </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
+    <script>
+
+        var neighborhood_name = []
+        var neighborhood_count = []
+
+        {% for key, value in chart_data.postal_code.items %}
+            neighborhood_name.push("{{key}}")
+            neighborhood_count.push({{value}})
+        {% endfor %}
+
+
+        var ctx = document.getElementById('myChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: neighborhood_name,
+                datasets: [{
+                    label: 'Common Areas',
+                    data: neighborhood_count,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    
+    <!-- price charts -->
+    <script>
+
+        var price = []
+        var price_count = []
+
+        {% for key, value in chart_data.price.items %}
+            price.push({{key}})
+            price_count.push("{{value}}")
+        {% endfor %}
+
+        //line
+        var ctxL = document.getElementById("lineChart").getContext('2d');
+        var myLineChart = new Chart(ctxL, {
+            type: 'line',
+            data: {
+                labels: price_count,
+                datasets: [
+                    {
+                        label: "Common Prices",
+                        data: price,
+                        backgroundColor: [
+                        'rgba(105, 0, 132, .2)',
+                        ],
+                        borderColor: [
+                        'rgba(200, 99, 132, .7)',
+                        ],
+                        borderWidth: 2
+                    },
+                    // {
+                    //     label: "My Second dataset",
+                    //     data: [28, 48, 40, 19, 86, 27, 90],
+                    //     backgroundColor: [
+                    //     'rgba(0, 137, 132, .2)',
+                    //     ],
+                    //     borderColor: [
+                    //     'rgba(0, 10, 130, .7)',
+                    //     ],
+                    //     borderWidth: 2
+                    // }
+                ]
+            },
+            options: {
+            responsive: true
+            }
+        });
+
+    </script>
+    
+    <!-- beds charts -->
+    <script>
+
+        var beds = []
+        var beds_count = []
+
+        {% for key, value in chart_data.beds.items %}
+            beds.push("{{key}}")
+            beds_count.push({{value}})
+        {% endfor %}
+
+
+        var ctx = document.getElementById('bedsChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: beds,
+                datasets: [{
+                    label: 'Common Beds',
+                    data: beds_count,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
+    
+    <!-- baths charts -->
+    <script>
+
+        var baths = []
+        var baths_count = []
+
+        {% for key, value in chart_data.baths.items %}
+            baths.push("{{key}}")
+            baths_count.push({{value}})
+        {% endfor %}
+
+
+        var ctx = document.getElementById('bathsChart');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: baths,
+                datasets: [{
+                    label: 'Common Baths',
+                    data: baths_count,
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)',
+                        'rgba(75, 192, 192, 0.2)',
+                        'rgba(153, 102, 255, 0.2)',
+                        'rgba(255, 159, 64, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)',
+                        'rgba(75, 192, 192, 1)',
+                        'rgba(153, 102, 255, 1)',
+                        'rgba(255, 159, 64, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    yAxes: [{
+                        ticks: {
+                            beginAtZero: true
+                        }
+                    }]
+                }
+            }
+        });
+    </script>
 {% endblock %}
