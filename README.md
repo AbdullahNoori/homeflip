@@ -5,14 +5,14 @@ Homeflip lets prospective buyers search for properties, agents and offices based
 
 ### Homefind sorts through a combination of detailed demographic data and affordability price-points on a viewable map. Potential buyers can save money & time when searching for their home. Included below:
 
-# Search Algorithms
-# Graphical Data
-# Machine Learning 
-# Predictions
+## Search Algorithms
+## Graphical Data
+## Machine Learning 
+## Predictions
 
 
-# LIVE LINk:
-## Homeflip.Herrokuapp.com
+# LIVE LINK:
+##http://homeflip.herokuapp.com/
 
 
 
