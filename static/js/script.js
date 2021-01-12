@@ -1,7 +1,6 @@
 /**
  * Global variables
  */
-{% load static %}
 
  "use strict";
 
