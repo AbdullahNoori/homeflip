@@ -140,49 +140,25 @@
               </div>
               <div class="cell-md-12 cell-sm-10 offset-top-40">
                 <hr>
-                <h3>Last Properties</h3>
-                <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-40">
-                  <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-29.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
-                  <div class="unit-body">
-                    <h6><a href="property.html" class="text-base">A beach house at Baja California peninsula</a></h6>
-                    <p class="text-primary text-sbold">$1,342.00</p>
-                    <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                    <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
+                {% if feature_properties %}
+                <h3>Nearby Properties</h3>
+                  {% for property in feature_properties %}
+                    <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-40">
+                      <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{{property.thumbnail}}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
                       <div class="unit-body">
-                        <div class="small">218 Front Street, Brooklyn, NY 11201, USA</div>
+                        <h6><a href="{% url 'property' property.property_id property.address.city property.address.state_code %}" class="text-base">{{property.address.line}}, {{property.address.city}}</a></h6>
+                        <p class="text-primary text-sbold">${{property.price}}</p>
+                        <p class="offset-top-20">{{property.address.county}} county</p>
+                        <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
+                          <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
+                          <div class="unit-body">
+                            <div class="small">{{property.address.line}}, {{property.address.city}}, {{property.address.state}}, {{property.address.postal_code}}</div>
+                          </div>
+                        </div><a href="{% url 'property' property.property_id property.address.city property.address.state_code %}" class="offset-top-16 btn btn-primary">read more</a>
                       </div>
-                    </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
-                  </div>
-                </div>
-                <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-30">
-                  <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-30.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
-                  <div class="unit-body">
-                    <h6><a href="property.html" class="text-base">Hunting mansion in Kentucky</a></h6>
-                    <p class="text-primary text-sbold">$1,200.00</p>
-                    <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                    <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
-                      <div class="unit-body">
-                        <div class="small">2001-2099 Saint Charles Street, St. Louis, MO 63103, USA</div>
-                      </div>
-                    </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
-                  </div>
-                </div>
-                <div class="text-xs-left unit unit-xs-horizontal unit-sm-horizontal unit-md-vertical unit-lg-horizontal offset-top-30">
-                  <div class="unit-left"><a href="#" class="reveal-inline-block"><img src="{% static 'images/post-31.jpg' %}" width="139" height="139" alt="" class="img-responsive center-block"></a></div>
-                  <div class="unit-body">
-                    <h6><a href="property.html" class="text-base">Erie Lakeside house, MI</a></h6>
-                    <p class="text-primary text-sbold">$3,400.00</p>
-                    <p class="offset-top-20">Enjoy a refreshing time amidst the monumental Appalachian mountains, in a townhouse that will host…</p>
-                    <div class="unit unit-horizontal unit-spacing-xs reveal-inline-flex text-left">
-                      <div class="unit-left"><span class="icon mdi mdi-map-marker text-primary"></span></div>
-                      <div class="unit-body">
-                        <div class="small">Northeast Ohio Sustainable Communities Consortium, 1299 Superior Avenue, Cleveland, OH 44114, USA</div>
-                      </div>
-                    </div><a href="property.html" class="offset-top-16 btn btn-primary">read more</a>
-                  </div>
-                </div>
+                    </div>
+                  {% endfor %}
+                {% endif %}
               </div>
             </div>
           </div>

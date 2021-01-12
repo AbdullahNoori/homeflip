@@ -60,7 +60,7 @@ def propertyDetail(property_id):
 
     return data   
 
-def listForSale(data):
+def listForSale(data, limit=50):
 
     url = "https://realtor.p.rapidapi.com/properties/v2/list-for-sale"
 
@@ -91,7 +91,7 @@ def listForSale(data):
         querystring = {
                 # "is_pending": data['pending'],
                 "city": data['fullAddress']['city'],
-                "limit":50,
+                "limit":limit,
                 "offset":"0",
                 "state_code":data['fullAddress']['state_code']
                 }

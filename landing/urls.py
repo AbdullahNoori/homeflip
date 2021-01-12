@@ -5,7 +5,7 @@ from .views import *
 urlpatterns = [
   path('', HomePageView.as_view(), name='home'),
   path('search', search, name='search'),
-  path('property/<str:property_id>', PropertyPageView.as_view(), name='property'),
+  path('property/<str:property_id>/<str:city>/<str:state_code>', PropertyPageView.as_view(), name='property'),
   path('search-results/', SearchResultsPageView.as_view(), name='search-results'),
   path('soon/', SoonPageView.as_view(), name='soon'),
   path('pricing/', PricingPageView.as_view(), name='pricing'),

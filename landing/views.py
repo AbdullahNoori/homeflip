@@ -126,11 +126,19 @@ class SearchResultsPageView(TemplateView):
 
 class PropertyPageView(ListView):
     
-    def get(self, request, property_id):
+    def get(self, request, property_id, city, state_code):
         
-        data = propertyDetail(property_id)
+        results = propertyDetail(property_id)
         
-        context = {"property": data['properties'][0]}
+        data = {
+            'fullAddress': {'city': city, 'state_code': state_code}
+        }
+        
+        nearby = listForSale(data, 6)
+        
+        
+        
+        context = {"property": results['properties'][0], 'feature_properties': nearby['properties']}
         
         return render(request, 'landing/property.html', context)
 

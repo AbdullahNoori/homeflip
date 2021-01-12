@@ -9,7 +9,7 @@
     <section class="bg-gray-lighter">
       <div class="shell text-left">
         <ol class="breadcrumb">
-          <li><a href="./">Home</a></li>
+          <li><a href="{% url 'home' %}">Home</a></li>
           <li class="active">Properties search results
           </li>
         </ol>
@@ -91,12 +91,12 @@
                 <!-- Product-->
                 <div class="unit unit-sm-horizontal unit-md-vertical unit-lg-horizontal product-list text-sm-left">
                   <div class="unit-left">
-                    <div class="thumbnail-variant-1"><a href="{% url 'property' property.property_id %}" class="reveal-inline-block"><img src="{{property.thumbnail}}" width="418" height="316" alt="" class="img-responsive center-block"></a>
-                      <div class="caption"><a href="{% url 'property' property.property_id %}" class="label-lg label label-primary">{{property.prop_status}}</a></div>
+                    <div class="thumbnail-variant-1"><a href="{% url 'property' property.property_id property.address.city property.address.state_code %}" class="reveal-inline-block"><img src="{{property.thumbnail}}" width="418" height="316" alt="" class="img-responsive center-block"></a>
+                      <div class="caption"><a href="{% url 'property' property.property_id property.address.city property.address.state_code %}" class="label-lg label label-primary">{{property.prop_status}}</a></div>
                     </div>
                   </div>
                   <div class="unit-body">
-                    <h5><a href="{% url 'property' property.property_id %}" class="text-base">{{property.address.line}} {{property.address.city}} {{property.address.state}} </a></h5>
+                    <h5><a href="{% url 'property' property.property_id property.address.city property.address.state_code %}" class="text-base">{{property.address.line}} {{property.address.city}} {{property.address.state}} </a></h5>
                     <div class="h5 text-primary">${{property.price}}</div>
                     <p class="offset-top-20">{{property.address.county}} county</p>
                     <div class="offset-top-20">
@@ -118,7 +118,7 @@
                       <span class="inset-right-10 icon mdi mdi-map-marker text-primary text-middle"></span>
                       <span class="text-middle small">{{property.address.line}} {{property.address.city}} {{property.address.state_code}} {{property.address.postal_code}}</span>
                     </p>
-                    <div class="offset-top-20"><a href="{% url 'property' property.property_id %}" class="btn btn-primary">read more</a></div>
+                    <div class="offset-top-20"><a href="{% url 'property' property.property_id property.address.city property.address.state_code %}" class="btn btn-primary">read more</a></div>
                   </div>
                 </div>
             </div>
