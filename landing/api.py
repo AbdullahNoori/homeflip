@@ -50,7 +50,7 @@ def propertyDetail(property_id):
     querystring = {"property_id": property_id}
 
     headers = {
-        'x-rapidapi-key': "ae42631858mshd5ba8affbe71f55p14f928jsncb2c824de7d1",
+        'x-rapidapi-key': os.getenv('soldproperties'),
         'x-rapidapi-host': "realtor.p.rapidapi.com"
     }
 
