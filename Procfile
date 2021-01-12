@@ -1,0 +1,1 @@
+web: gunicorn homeflip.wsgi --log-file -

@@ -31,20 +31,33 @@
         <div data-zoom="12" data-x="-73.9874068" data-y="40.643180" data-styles="[{&quot;featureType&quot;:&quot;landscape&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFBB00&quot;},{&quot;saturation&quot;:43.400000000000006},{&quot;lightness&quot;:37.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.highway&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FFC200&quot;},{&quot;saturation&quot;:-61.8},{&quot;lightness&quot;:45.599999999999994},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.arterial&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:51.19999999999999},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;road.local&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#FF0300&quot;},{&quot;saturation&quot;:-100},{&quot;lightness&quot;:52},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;water&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#0078FF&quot;},{&quot;saturation&quot;:-13.200000000000003},{&quot;lightness&quot;:2.4000000000000057},{&quot;gamma&quot;:1}]},{&quot;featureType&quot;:&quot;poi&quot;,&quot;stylers&quot;:[{&quot;hue&quot;:&quot;#00FF6A&quot;},{&quot;saturation&quot;:-1.0989010989011234},{&quot;lightness&quot;:11.200000000000017},{&quot;gamma&quot;:1}]}]" class="rd-google-map rd-google-map__model"></div>
       {% endif %}
     </section>
-
+<br>
     <section class="bg-gray-lighter">
-        <div class="col bg-white">
-            <canvas class="w-50 h-100" id="myChart"></canvas>
+      <!-- <div class="container"> -->
+        <div class="row mt-5 pt-5">
+            
+          <div class="col-sm-6 bg-white m-0">
+            <div class="col-sm-6 bg-white m-0">
+              <canvas class="h-100" id="myChart"></canvas>
+            </div>
+
+            <div class="col-sm-6 bg-white m-0">
+              <canvas class="h-100" id="lineChart"></canvas>
+            </div>
+          </div>
+
+          <div class="col-sm-6 bg-white m-0">
+            <div class="col-sm-6 bg-white m-0">
+                <canvas id="bedsChart"></canvas>
+            </div>
+            <div class="col-sm-6 bg-white m-0">
+                <canvas id="bathsChart"></canvas>
+            </div>
+          </div>
+
+
         </div>
-        <div class="col bg-white">
-            <canvas class="w-50 h-100" id="lineChart"></canvas>
-        </div>
-        <div class="col bg-white">
-            <canvas id="bedsChart"></canvas>
-        </div>
-        <div class="col bg-white">
-            <canvas id="bathsChart"></canvas>
-        </div>
+      <!-- </div> -->
     </section>
 
     <section class="section-top-70 section-bottom-80">
@@ -189,6 +202,70 @@
     </section>
   </main>
 
+  <!-- map -->
+  <script>
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 12,
+    center: new google.maps.LatLng({{properties.0.address.lat}}, {{properties.0.address.lon}}),
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+    });
+
+    var infowindow = new google.maps.InfoWindow();
+
+
+
+
+    var marker, i;
+    // for (i = 0; i < locations.length; i++) {  
+    {% for property in properties %}
+        marker = new google.maps.Marker({
+            position: new google.maps.LatLng({{property.address.lat}}, {{property.address.lon}}),
+            map: map
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker) {
+            return function() {
+            infowindow.setContent(
+                '<div class="card flex-row flex-wrap mb-2 border-0">'+
+                    '<img width="200px" height="150px" src="{{property.thumbnail}}" alt="">'+
+                    '<div class="card-block px-2 mt-3 border-0">'+
+                    '<p class="card-text float-right">#{{property.rank}}</p>'+
+                    '<h4 class="card-title">${{property.price}}</h4>'+
+                    '<p class="card-text">{{property.prop_type}}</p>'+
+                    '<p class="card-text">'+
+                        '<span><i class="fa fa-arrows-alt pr-2"></i>{{property.building_size.size}} {{property.building_size.units}} </span>'+
+                        '<span><i class="fa fa-bath pl-2 pr-2"></i>{{property.beds}} Beds {{prooperty.baths}} Baths</span>'+
+                    '</p>'+
+                    '<p class="card-text">'+
+                    '   <span><small>{{property.address.line}} {{property.address.city}} {{property.address.postal_code}}</small></span>'+
+                    '</p>'+
+                '</div>'+
+                '</div>'
+            );
+            infowindow.open(map, marker);
+            }
+        })(marker));
+
+    {% endfor %}
+
+    {% for zipcode, center in chart_data.top_areas.items %}
+        // Add the circle for this city to the map.
+        var cityCircle = new google.maps.Circle({
+        strokeColor: "#FF0000",
+        strokeOpacity: 0.8,
+        strokeWeight: 2,
+        fillColor: "#00ff80",
+        fillOpacity: 0.35,
+        map,
+        center: {"lat": {{center.lat}}, "lng": {{center.lng}}},
+        radius: 2000
+        });
+    {% endfor %}
+
+
+  </script>
+
   <script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.3/dist/Chart.min.js"></script>
     <script>
 
@@ -239,7 +316,6 @@
             }
         });
     </script>
-    
     <!-- price charts -->
     <script>
 
